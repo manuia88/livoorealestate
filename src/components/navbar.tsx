@@ -17,40 +17,36 @@ export function Navbar() {
             dropdown: [
                 { label: "Casas", href: "/propiedades?type=buy&category=casa" },
                 { label: "Departamentos", href: "/propiedades?type=buy&category=departamento" },
-                { label: "Terrenos", href: "/propiedades?type=buy&category=terreno" },
-                { label: "Comercial", href: "/propiedades?type=buy&category=comercial" },
             ]
         },
         {
-            label: "Para rentar",
+            label: "Rentar",
             href: "/propiedades?type=rent",
             dropdown: [
                 { label: "Casas", href: "/propiedades?type=rent&category=casa" },
                 { label: "Departamentos", href: "/propiedades?type=rent&category=departamento" },
-                { label: "Estudios", href: "/propiedades?type=rent&category=estudio" },
-                { label: "Comercial", href: "/propiedades?type=rent&category=comercial" },
             ]
         },
         {
             label: "Soy Propietario",
-            href: "/vender-mi-propiedad", // Main link can go to selling page
+            href: "/vender-mi-propiedad",
             dropdown: [
-                { label: "Vender mi propiedad", href: "/vender-mi-propiedad" },
-                { label: "Rentar mi propiedad", href: "/rentar-mi-propiedad" },
-                { label: "Valuación gratuita", href: "/valuacion" }, // Placeholder as requested
-                { label: "Consejos para vender o rentar", href: "/consejos" }, // Placeholder
+                { label: "Vender mi Propiedad", href: "/vender-mi-propiedad" },
+                { label: "Rentar mi Propiedad", href: "/rentar-mi-propiedad" },
+                { label: "Valuación Gratuita", href: "/valuacion" },
+                { label: "Consejos para Vender o Rentar", href: "/consejos" },
             ]
         },
         {
-            label: "Para agencias inmobiliarias",
+            label: "Para Agencias Inmobiliarias",
             href: "/agencias",
         },
         {
-            label: "Un Livoo",
+            label: "Nosotros",
             href: "/sobre-nosotros",
             dropdown: [
-                { label: "Sobre nosotros", href: "/sobre-nosotros" },
-                { label: "Nuestro equipo", href: "/equipo" },
+                { label: "Sobre Nosotros", href: "/sobre-nosotros" },
+                { label: "Nuestro Equipo", href: "/equipo" },
                 { label: "Contacto", href: "/contacto" },
                 { label: "Blog", href: "/blog" },
             ]
@@ -61,25 +57,16 @@ export function Navbar() {
         <nav className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E5E3DB] shadow-sm">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
-                    {/* Logo - Use your actual logo image */}
-                    <Link href="/" className="flex items-center gap-3 group">
-                        {/* Replace with your actual logo */}
-                        <div className="relative w-12 h-12 flex-shrink-0">
+                    {/* Logo - Image Only */}
+                    <Link href="/" className="flex items-center group">
+                        <div className="relative w-16 h-16 flex-shrink-0">
                             {/* Livoo Logo */}
                             <Image
                                 src="/images/livoo-logo.png"
-                                alt="Livoo Bienes Raíces"
+                                alt="Livoo"
                                 fill
                                 className="object-contain"
                             />
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="text-xl font-bold tracking-tight text-[#2C3E2C] uppercase">
-                                LIVOO
-                            </span>
-                            <span className="text-[10px] font-medium tracking-[0.2em] text-[#6B7B6B] uppercase">
-                                BIENES RAÍCES
-                            </span>
                         </div>
                     </Link>
 
@@ -129,13 +116,13 @@ export function Navbar() {
                             className="text-[#2C3E2C] hover:text-[#B8975A] hover:bg-[#F8F7F4]"
                         >
                             <User className="w-4 h-4 mr-2" />
-                            Para entrar
+                            Para Entrar
                         </Button>
                         <Button
                             size="sm"
                             className="bg-gradient-to-r from-[#B8975A] to-[#C4A872] hover:from-[#A38449] hover:to-[#B8975A] text-white rounded-lg shadow-md hover:shadow-lg transition-all font-semibold"
                         >
-                            Publicar propiedad
+                            Publicar Propiedad
                         </Button>
                     </div>
 
@@ -193,13 +180,13 @@ export function Navbar() {
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 <User className="w-4 h-4 mr-2" />
-                                Para entrar
+                                Para Entrar
                             </Button>
                             <Button
                                 className="w-full bg-gradient-to-r from-[#B8975A] to-[#C4A872] hover:from-[#A38449] hover:to-[#B8975A] text-white"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
-                                Publicar propiedad
+                                Publicar Propiedad
                             </Button>
                         </div>
                     </div>

@@ -32,15 +32,13 @@ export function HeroSection() {
                     {/* Decorative gold accent bar */}
                     <div className="w-16 h-1 bg-gradient-to-r from-[#B8975A] to-[#D4C19C] rounded-full mb-6" />
 
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#2C3E2C] mb-6 leading-tight">
-                        Facilidad de uso para quienes desean{" "}
-                        <span className="text-[#B8975A]">comprar</span>,{" "}
-                        <span className="text-[#B8975A]">vender</span> o{" "}
-                        <span className="text-[#B8975A]">rentar</span> en CDMX.
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C3E2C] mb-6 leading-tight">
+                        Tu Hogar Ideal Te Está Esperando en{" "}
+                        <span className="text-[#B8975A]">CDMX</span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-[#6B7B6B] mb-8 leading-relaxed">
-                        Encuentra tu casa ideal a través de una inmobiliaria con tecnología Livoo.
+                    <p className="text-base md:text-lg text-[#6B7B6B] mb-8 leading-relaxed">
+                        Expertos en Bienes Raíces con la Mejor Tecnología y Asesoría Personalizada
                     </p>
 
                     {/* Tabs - Comprar / Rentar */}
@@ -48,8 +46,8 @@ export function HeroSection() {
                         <button
                             onClick={() => setActiveTab('buy')}
                             className={`flex items-center gap-2 pb-3 px-2 transition-all relative ${activeTab === 'buy'
-                                    ? 'text-[#2C3E2C] font-semibold'
-                                    : 'text-[#6B7B6B] hover:text-[#2C3E2C]'
+                                ? 'text-[#2C3E2C] font-semibold'
+                                : 'text-[#6B7B6B] hover:text-[#2C3E2C]'
                                 }`}
                         >
                             <Home className="w-5 h-5" />
@@ -64,12 +62,12 @@ export function HeroSection() {
                         <button
                             onClick={() => setActiveTab('rent')}
                             className={`flex items-center gap-2 pb-3 px-2 transition-all relative ${activeTab === 'rent'
-                                    ? 'text-[#2C3E2C] font-semibold'
-                                    : 'text-[#6B7B6B] hover:text-[#2C3E2C]'
+                                ? 'text-[#2C3E2C] font-semibold'
+                                : 'text-[#6B7B6B] hover:text-[#2C3E2C]'
                                 }`}
                         >
                             <Building2 className="w-5 h-5" />
-                            <span>Para rentar</span>
+                            <span>Rentar</span>
                             {activeTab === 'rent' && (
                                 <motion.div
                                     layoutId="activeTab"
@@ -83,7 +81,7 @@ export function HeroSection() {
                     <div className="flex flex-col md:flex-row gap-3">
                         <input
                             type="text"
-                            placeholder="Busca por colonia, delegación o código postal"
+                            placeholder="Busca por Colonia, Delegación o Código Postal"
                             className="flex-1 px-5 py-4 rounded-xl border-2 border-[#E5E3DB] focus:outline-none focus:ring-2 focus:ring-[#B8975A] focus:border-transparent text-[#2C3E2C] placeholder-[#A8B5A1] transition-all"
                         />
                         <Button
@@ -91,7 +89,7 @@ export function HeroSection() {
                             className="bg-gradient-to-r from-[#B8975A] to-[#C4A872] hover:from-[#A38449] hover:to-[#B8975A] text-white rounded-xl px-8 py-4 h-auto font-semibold shadow-lg hover:shadow-xl transition-all"
                         >
                             <Search className="mr-2 h-5 w-5" />
-                            Buscar inmuebles
+                            Buscar Inmuebles
                         </Button>
                     </div>
 
@@ -100,15 +98,15 @@ export function HeroSection() {
                         <div className="flex flex-wrap items-center gap-6 text-sm text-[#6B7B6B]">
                             <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-full bg-[#4A7C4A]" />
-                                <span>+1,500 propiedades</span>
+                                <span>+1,500 Propiedades</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-full bg-[#B8975A]" />
-                                <span>Asesoría personalizada</span>
+                                <span>Asesoría Personalizada</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-full bg-[#4A7C4A]" />
-                                <span>Procesos 100% digitales</span>
+                                <span>Trámites Legales Incluidos</span>
                             </div>
                         </div>
                     </div>

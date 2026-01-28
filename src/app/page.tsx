@@ -21,7 +21,7 @@ export default async function Home() {
       {/* 2. City Badges */}
       <CityBadges />
 
-      {/* 3. Service Cards */}
+      {/* 3. Service Cards - All 5 in one row */}
       <ServiceCards />
 
       {/* 4. Featured Properties */}

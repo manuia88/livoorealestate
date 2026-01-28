@@ -1,37 +1,117 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const cities = [
-    { name: "Cuauhtémoc", code: "CU", gradient: "from-[#2C3E2C] to-[#556B55]" },
-    { name: "Miguel Hidalgo", code: "MH", gradient: "from-[#556B55] to-[#7D8F77]" },
-    { name: "Benito Juárez", code: "BJ", gradient: "from-[#7D8F77] to-[#A8B5A1]" },
-    { name: "Álvaro Obregón", code: "AO", gradient: "from-[#B8975A] to-[#C4A872]" },
-    { name: "Cuajimalpa", code: "CJ", gradient: "from-[#A38449] to-[#B8975A]" }
+    { name: "Cuauhtémoc", code: "CU", image: "/images/alcaldias/cuauhtemoc.png" },
+    { name: "Miguel Hidalgo", code: "MH", image: "/images/alcaldias/miguel-hidalgo.png" },
+    { name: "Benito Juárez", code: "BJ", image: "/images/alcaldias/benito-juarez.png" },
+    { name: "Álvaro Obregón", code: "AO", image: "/images/alcaldias/alvaro-obregon.png" },
+    { name: "Cuajimalpa", code: "CJ", image: "/images/alcaldias/cuajimalpa.png" }
 ];
 
 export function CityBadges() {
     return (
-        <section className="py-16 bg-[#F8F7F4] border-y border-[#E5E3DB]">
-            <div className="container mx-auto px-4 text-center">
-                <p className="text-sm font-semibold text-[#6B7B6B] uppercase tracking-widest mb-10">
-                    Explora las mejores alcaldías de CDMX
-                </p>
-                <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16">
-                    {cities.map((city, index) => (
-                        <motion.div
-                            key={city.code}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity group cursor-pointer"
-                        >
-                            <div className={`w-16 h-16 bg-gradient-to-br ${city.gradient} rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl transition-shadow border-2 border-[#B8975A]/20`}>
-                                {city.code}
-                            </div>
-                            <span className="text-sm font-semibold text-[#2C3E2C]">{city.name}</span>
-                        </motion.div>
-                    ))}
+        <section className="py-20 bg-[#F8F7F4] border-y border-[#E5E3DB]">
+            <div className="container mx-auto px-4">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-12"
+                >
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#2C3E2C] mb-3">
+                        Explora las Mejores Alcaldías de CDMX
+                    </h2>
+                    <p className="text-lg text-[#6B7B6B] max-w-2xl mx-auto">
+                        Encuentra Tu Hogar en las Zonas Más Exclusivas de la Ciudad
+                    </p>
+                </motion.div>
+
+                {/* Grid Layout - 2 cards top row, 3 cards bottom row */}
+                <div className="max-w-7xl mx-auto">
+                    {/* Top Row - 2 Cards Centered */}
+                    <div className="flex justify-center gap-8 mb-8">
+                        {cities.slice(0, 2).map((city, index) => (
+                            <motion.div
+                                key={city.code}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="flex flex-col items-center gap-4 group cursor-pointer"
+                            >
+                                {/* Image Card with Hover Effects */}
+                                <div className="relative w-80 h-80 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300">
+                                    {/* Image */}
+                                    <Image
+                                        src={city.image}
+                                        alt={city.name}
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                    />
+
+                                    {/* Gradient Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#2C3E2C]/80 via-[#2C3E2C]/40 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+
+                                    {/* Code Badge */}
+                                    <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg">
+                                        <span className="text-sm font-bold text-[#2C3E2C]">{city.code}</span>
+                                    </div>
+
+                                    {/* Hover Border */}
+                                    <div className="absolute inset-0 border-2 border-[#B8975A] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                                </div>
+
+                                {/* Name Label */}
+                                <span className="text-lg font-semibold text-[#2C3E2C] group-hover:text-[#B8975A] transition-colors duration-300">
+                                    {city.name}
+                                </span>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Bottom Row - 3 Cards Centered */}
+                    <div className="flex justify-center gap-8">
+                        {cities.slice(2, 5).map((city, index) => (
+                            <motion.div
+                                key={city.code}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: (index + 2) * 0.1 }}
+                                className="flex flex-col items-center gap-4 group cursor-pointer"
+                            >
+                                {/* Image Card with Hover Effects */}
+                                <div className="relative w-80 h-80 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300">
+                                    {/* Image */}
+                                    <Image
+                                        src={city.image}
+                                        alt={city.name}
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                    />
+
+                                    {/* Gradient Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#2C3E2C]/80 via-[#2C3E2C]/40 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+
+                                    {/* Code Badge */}
+                                    <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg">
+                                        <span className="text-sm font-bold text-[#2C3E2C]">{city.code}</span>
+                                    </div>
+
+                                    {/* Hover Border */}
+                                    <div className="absolute inset-0 border-2 border-[#B8975A] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                                </div>
+
+                                {/* Name Label */}
+                                <span className="text-lg font-semibold text-[#2C3E2C] group-hover:text-[#B8975A] transition-colors duration-300">
+                                    {city.name}
+                                </span>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
