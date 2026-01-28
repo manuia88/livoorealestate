@@ -1,92 +1,181 @@
 "use client";
 
-import { Property } from "@/types/property";
-import { MapPin, BedDouble, Bath, Car, Heart } from "lucide-react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { Property } from "@/types/property";
+import { MapPin, BedDouble, Bath, Ruler, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 interface PropertyCardProps {
     property: Property;
-    className?: string;
 }
 
-export function PropertyCard({ property, className }: PropertyCardProps) {
-    const { title, price, currency, location, features, images, type, listingType } = property;
+export function PropertyCard({ property }: PropertyCardProps) {
+    const [isFavorite, setIsFavorite] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const formatPrice = (amount: number) => {
         return new Intl.NumberFormat('es-MX', {
             style: 'currency',
-            currency: currency,
+            currency: property.currency,
             minimumFractionDigits: 0,
             maximumFractionDigits: 0,
         }).format(amount);
     };
 
-    return (
-        <div className={cn("group bg-white rounded-xl overflow-hidden border border-border hover:shadow-xl transition-all duration-300", className)}>
-            {/* Image Container */}
-            <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                    src={images[0]}
-                    alt={title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+    const handleNextImage = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setCurrentImageIndex((prev) =>
+            prev === property.images.length - 1 ? 0 : prev + 1
+        );
+    };
 
-                {/* Badges */}
-                <div className="absolute top-3 left-3 flex flex-col gap-2">
-                    <span className="bg-primary/90 text-white text-xs font-semibold px-2 py-1 rounded backdrop-blur-sm uppercase tracking-wide">
-                        {listingType === 'buy' ? 'Venta' : 'Renta'}
-                    </span>
-                    {property.featured && (
-                        <span className="bg-accent/90 text-white text-xs font-semibold px-2 py-1 rounded backdrop-blur-sm shadow-sm">
-                            Destacado
+    const handlePrevImage = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setCurrentImageIndex((prev) =>
+            prev === 0 ? property.images.length - 1 : prev - 1
+        );
+    };
+
+    return (
+        <div className="group bg-white rounded-2xl overflow-hidden border border-[#E5E3DB] hover:shadow-2xl hover:shadow-[#2C3E2C]/10 transition-all duration-300 flex flex-col h-full hover:border-[#B8975A]/30">
+            <Link href={`/propiedades/${property.id}`}>
+                {/* Image Container with carousel */}
+                <div className="relative h-56 overflow-hidden bg-[#F8F7F4]">
+                    <Image
+                        src={property.images[currentImageIndex]}
+                        alt={property.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+
+                    {/* Badge - Llegó hace X día */}
+                    <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-md border border-[#E5E3DB]">
+                        <span className="text-xs font-semibold text-[#2C3E2C]">
+                            Llegó hace 1 día
                         </span>
+                    </div>
+
+                    {/* Featured badge if applicable */}
+                    {property.featured && (
+                        <div className="absolute top-3 left-3 mt-10 bg-gradient-to-r from-[#B8975A] to-[#C4A872] px-3 py-1 rounded-lg shadow-md">
+                            <span className="text-xs font-bold text-white uppercase tracking-wide">
+                                Destacado
+                            </span>
+                        </div>
+                    )}
+
+                    {/* Favorite Button */}
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setIsFavorite(!isFavorite);
+                        }}
+                        className="absolute top-3 right-3 w-9 h-9 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-md border border-[#E5E3DB]"
+                    >
+                        <Heart
+                            className={`w-5 h-5 transition-colors ${isFavorite ? 'fill-[#B85C5C] text-[#B85C5C]' : 'text-[#6B7B6B]'
+                                }`}
+                        />
+                    </button>
+
+                    {/* Image Navigation Dots */}
+                    {property.images.length > 1 && (
+                        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+                            {property.images.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        setCurrentImageIndex(index);
+                                    }}
+                                    className={`h-1.5 rounded-full transition-all ${index === currentImageIndex
+                                            ? 'bg-white w-6'
+                                            : 'bg-white/60 hover:bg-white/80 w-1.5'
+                                        }`}
+                                />
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Navigation arrows */}
+                    {property.images.length > 1 && (
+                        <>
+                            <button
+                                onClick={handlePrevImage}
+                                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white shadow-md border border-[#E5E3DB]"
+                            >
+                                <span className="text-[#2C3E2C] font-bold">‹</span>
+                            </button>
+                            <button
+                                onClick={handleNextImage}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white shadow-md border border-[#E5E3DB]"
+                            >
+                                <span className="text-[#2C3E2C] font-bold">›</span>
+                            </button>
+                        </>
                     )}
                 </div>
 
-                {/* Favorite Button */}
-                <button className="absolute top-3 right-3 p-2 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-red-500 transition-colors">
-                    <Heart className="w-5 h-5" />
-                </button>
-            </div>
+                {/* Content */}
+                <div className="p-5 flex flex-col flex-1">
+                    {/* Property Type Badge */}
+                    <span className="text-xs font-semibold text-[#6B7B6B] uppercase tracking-wide mb-2">
+                        {property.type === 'apartment' && 'Departamento'}
+                        {property.type === 'house' && 'Casa'}
+                        {property.type === 'studio' && 'Estudio'}
+                        {property.type === 'loft' && 'Loft'}
+                    </span>
 
-            {/* Content */}
-            <div className="p-4">
-                <div className="flex justify-between items-start mb-2">
-                    <div>
-                        <p className="text-secondary font-bold text-xl">{formatPrice(price)}</p>
-                        <p className="text-muted-foreground text-xs uppercase tracking-wider font-semibold">{type}</p>
+                    {/* Price */}
+                    <p className="text-2xl font-bold text-[#2C3E2C] mb-2">
+                        {formatPrice(property.price)}
+                    </p>
+
+                    {/* Location */}
+                    <div className="flex items-start gap-1.5 text-sm text-[#6B7B6B] mb-4">
+                        <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#B8975A]" />
+                        <span className="line-clamp-1">
+                            {property.location.colonia}, {property.location.city}
+                        </span>
+                    </div>
+
+                    {/* Features */}
+                    <div className="flex items-center gap-4 text-sm text-[#2C3E2C] mb-4 flex-wrap">
+                        <div className="flex items-center gap-1.5">
+                            <Ruler className="w-4 h-4 text-[#6B7B6B]" />
+                            <span className="font-medium">{property.features.area} m²</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                            <BedDouble className="w-4 h-4 text-[#6B7B6B]" />
+                            <span className="font-medium">{property.features.bedrooms}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                            <Bath className="w-4 h-4 text-[#6B7B6B]" />
+                            <span className="font-medium">{property.features.bathrooms}</span>
+                        </div>
+                    </div>
+
+                    {/* Button - Pushed to bottom */}
+                    <div className="mt-auto pt-3 border-t border-[#E5E3DB]">
+                        <Button
+                            variant="outline"
+                            className="w-full rounded-lg border-[#E5E3DB] hover:border-[#B8975A] hover:text-[#B8975A] hover:bg-[#FAF8F3] font-semibold transition-all"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                // Handle contact action
+                            }}
+                        >
+                            Ver contacto
+                        </Button>
                     </div>
                 </div>
-
-                <h3 className="font-medium text-foreground text-lg mb-2 line-clamp-1 group-hover:text-accent transition-colors">
-                    {title}
-                </h3>
-
-                <div className="flex items-center text-muted-foreground text-sm mb-4">
-                    <MapPin className="w-4 h-4 mr-1 text-accent" />
-                    <span className="truncate">{location.colonia}, {location.city}</span>
-                </div>
-
-                <div className="border-t border-border pt-3 flex items-center justify-between text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                        <BedDouble className="w-4 h-4" />
-                        <span>{features.bedrooms}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <Bath className="w-4 h-4" />
-                        <span>{features.bathrooms}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <Car className="w-4 h-4" />
-                        <span>{features.parking}</span>
-                    </div>
-                    <div className="flex items-center gap-1 font-medium">
-                        <span>{features.area} m²</span>
-                    </div>
-                </div>
-            </div>
+            </Link>
         </div>
     );
 }

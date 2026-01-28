@@ -31,49 +31,88 @@
 }
 
 :root {
-  /* Luxury Color Palette */
+  /* Livoo Brand Color Palette - Olive Green & Gold */
 
-  /* Primary: Deep Navy/Charcoal - Trust, Authority */
-  --primary: #0F172A;
-  /* Slate 900 */
-  --primary-foreground: #F8FAFC;
-  /* Slate 50 */
+  /* Primary: Deep Olive Green - Nature, Trust, Stability */
+  --primary: #2C3E2C;
+  /* Dark Olive Green */
+  --primary-foreground: #FFFFFF;
 
-  /* Secondary: Elegant Dark Grey - Sophistication */
-  --secondary: #334155;
-  /* Slate 700 */
-  --secondary-foreground: #F1F5F9;
-  /* Slate 100 */
+  /* Secondary: Medium Olive - Sophistication */
+  --secondary: #556B55;
+  /* Medium Olive */
+  --secondary-foreground: #FFFFFF;
 
-  /* Accent: Gold/Bronze - Premium, Exclusive */
-  --accent: #B49B57;
-  /* Muted Gold */
+  /* Accent: Warm Gold - Premium, Luxury, Elegance */
+  --accent: #B8975A;
+  /* Antique Gold */
   --accent-foreground: #FFFFFF;
 
   /* Backgrounds */
   --background: #FFFFFF;
-  --foreground: #1E293B;
-  /* Slate 800 */
+  --foreground: #1F2D1F;
+  /* Very Dark Olive */
 
-  --surface: #F8F9FB;
-  /* Very light cool grey */
-  --surface-alt: #F1F5F9;
+  --surface: #F8F7F4;
+  /* Warm Beige */
+  --surface-alt: #F1EFE8;
+  /* Light Sand */
 
   /* Text */
-  --muted: #F1F5F9;
-  --muted-foreground: #64748B;
-  /* Slate 500 */
+  --muted: #F1EFE8;
+  /* Light Sand */
+  --muted-foreground: #6B7B6B;
+  /* Muted Olive */
 
   /* Borders */
-  --border: #E2E8F0;
+  --border: #E5E3DB;
+  /* Soft Taupe */
 
   /* Status */
-  --success: #10B981;
-  --error: #EF4444;
-  --warning: #F59E0B;
+  --success: #4A7C4A;
+  /* Forest Green */
+  --error: #B85C5C;
+  /* Muted Red */
+  --warning: #C9A35C;
+  /* Golden Amber */
 
-  /* Radius */
-  --radius: 0.5rem;
+  /* Additional Livoo Brand Colors */
+  --olive-50: #F5F6F4;
+  --olive-100: #E8EBE6;
+  --olive-200: #D1D7CC;
+  --olive-300: #A8B5A1;
+  --olive-400: #7D8F77;
+  --olive-500: #556B55;
+  --olive-600: #3F5140;
+  --olive-700: #2C3E2C;
+  --olive-800: #1F2D1F;
+  --olive-900: #141E14;
+
+  --gold-50: #FAF8F3;
+  --gold-100: #F3EFE3;
+  --gold-200: #E8DFC7;
+  --gold-300: #D4C19C;
+  --gold-400: #C4A872;
+  --gold-500: #B8975A;
+  --gold-600: #A38449;
+  --gold-700: #8A6F3C;
+  --gold-800: #6F5B31;
+  --gold-900: #594A28;
+
+  /* Cream/Beige Backgrounds */
+  --cream-50: #FDFCFA;
+  --cream-100: #F8F7F4;
+  --cream-200: #F1EFE8;
+  --cream-300: #E8E5DB;
+
+  /* Gradient Backgrounds */
+  --gradient-livoo: linear-gradient(135deg, #2C3E2C 0%, #556B55 100%);
+  --gradient-gold: linear-gradient(135deg, #B8975A 0%, #D4C19C 100%);
+  --gradient-hero: linear-gradient(135deg, #F8F7F4 0%, #FFFFFF 50%, #FAF8F3 100%);
+
+  /* Radius - Elegant and refined */
+  --radius: 0.75rem;
+  /* 12px */
 }
 
 body {
@@ -86,7 +125,7 @@ body {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -94,10 +133,190 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 4px;
+  background: #D1D7CC;
+  /* Olive 200 */
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: #A8B5A1;
+  /* Olive 300 */
+}
+
+/* Utility Classes for Livoo Brand */
+.text-brand-olive {
+  color: var(--primary);
+}
+
+.text-brand-gold {
+  color: var(--accent);
+}
+
+.bg-brand-olive {
+  background-color: var(--primary);
+}
+
+.bg-brand-gold {
+  background-color: var(--accent);
+}
+
+.border-brand-olive {
+  border-color: var(--primary);
+}
+
+.border-brand-gold {
+  border-color: var(--accent);
+}
+
+/* Ensure Portals (Select, Dialogs) are always on top */
+[data-radix-portal] {
+  z-index: 9999 !important;
+}
+
+.bg-gradient-livoo {
+  background: var(--gradient-livoo);
+}
+
+.bg-gradient-gold {
+  background: var(--gradient-gold);
+}
+
+.bg-gradient-hero {
+  background: var(--gradient-hero);
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a,
+.card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(44, 62, 44, 0.1), 0 10px 10px -5px rgba(44, 62, 44, 0.04);
+}
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animation for badges */
+@keyframes badge-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.badge-new {
+  animation: badge-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Map marker custom styles */
+.custom-map-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Premium popup styling for map */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  border: 1px solid var(--gold-300);
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+}
+
+.leaflet-popup-tip {
+  border-top-color: var(--gold-300) !important;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--gold-200);
+  color: var(--olive-800);
+}
+
+/* Loading skeleton animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, #f1efe8 4%, #e5e3db 25%, #f1efe8 36%);
+  background-size: 1000px 100%;
+}
+
+/* Premium Gold shimmer effect for featured items */
+@keyframes gold-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg,
+      var(--gold-500) 0%,
+      var(--gold-300) 50%,
+      var(--gold-500) 100%);
+  background-size: 200% auto;
+  animation: gold-shimmer 3s linear infinite;
+}
+
+/* Livoo decorative elements */
+.livoo-pattern {
+  background-image: radial-gradient(circle, var(--gold-500) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.1;
+}
+
+/* Natural texture overlay */
+.natural-texture {
+  position: relative;
+}
+
+.natural-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.3;
 }
